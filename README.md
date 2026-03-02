@@ -3,7 +3,11 @@
 A structured, engineering-focused deep dive into Data Structures and Algorithms.
 
 This repository is not just a problem collection.  
-It is a systematic breakdown of core algorithmic thinking, time-space analysis, and pattern recognition used in real software systems.
+It is a systematic breakdown of core algorithmic thinking, time-space analysis, and pattern recognition used in real software systems.---
+
+---
+
+![alt text](image.png)
 
 ---
 
