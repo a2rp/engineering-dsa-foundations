@@ -1,5 +1,5 @@
 // App.jsx
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Styled } from "./App.styled";
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -54,12 +54,26 @@ import Knapsack from "./topics/knapsack";
 import Lis from "./topics/lis";
 
 const App = () => {
+    const mainRef = useRef(null);
+    const [showGoToTop, setShowGoToTop] = useState(false);
+
+    useEffect(() => {
+        const main = mainRef.current;
+        if (!main) return undefined;
+
+        const handleScroll = () => setShowGoToTop(main.scrollTop > 280);
+        main.addEventListener("scroll", handleScroll, { passive: true });
+        return () => main.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    const scrollToTop = () => mainRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+
     return (
         <Styled.Wrapper>
             <Styled.Header>
                 <Header />
             </Styled.Header>
-            <Styled.Main>
+            <Styled.Main ref={mainRef}>
                 <div className="contentWrapper">
                     <About />
 
@@ -116,6 +130,12 @@ const App = () => {
                 <div className="footerWrapper">
                     <Footer />
                 </div>
+
+                {showGoToTop && (
+                    <button className="goToTop" type="button" onClick={scrollToTop} aria-label="Scroll to top" title="Scroll to top">
+                        ↑
+                    </button>
+                )}
             </Styled.Main>
         </Styled.Wrapper>
     );

@@ -39,5 +39,30 @@ export const Styled = {
             /* min-height: 300px; */
             flex-shrink: 0;
         }
+
+        .goToTop {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 100;
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--color-primary);
+            border-radius: 50%;
+            background: var(--color-surface-2);
+            color: var(--color-primary);
+            font-size: 20px;
+            box-shadow: 0 10px 24px var(--color-shadow);
+            transition: border-color 180ms ease, box-shadow 180ms ease;
+
+            &:hover,
+            &:focus-visible {
+                border-color: var(--color-primary-hover);
+                box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-primary) 16%, transparent);
+                outline: none;
+            }
+        }
     `,
 };

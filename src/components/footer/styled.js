@@ -1,4 +1,3 @@
-// components/footer/styled.js
 import styled from "styled-components";
 
 export const Styled = {
@@ -6,35 +5,55 @@ export const Styled = {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 12px;
+        gap: 16px;
         padding: 15px;
         border-top: 1px solid var(--color-border);
-
-        font-size: 12px;
         color: var(--color-text-muted);
+        font-size: 12px;
 
-        .right a {
+        .copyright a {
             color: var(--color-text-secondary);
-            font-weight: 600;
+            font-weight: 700;
         }
 
-        .right a:hover {
-            color: var(--color-text-primary);
+        .copyright a:hover,
+        .copyright a:focus-visible {
+            color: var(--color-primary);
         }
 
-        a {
-            color: var(--color-text-secondary);
-            font-weight: 600;
+        .footerLinks {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 8px;
+
+            a {
+                width: 34px;
+                height: 34px;
+                display: inline-grid;
+                place-items: center;
+                border: 1px solid var(--color-border);
+                border-radius: 9px;
+                color: var(--color-text-secondary);
+                transition: border-color 180ms ease, box-shadow 180ms ease, color 180ms ease;
+            }
+
+            a:hover,
+            a:focus-visible {
+                border-color: var(--color-primary);
+                box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 14%, transparent);
+                color: var(--color-primary);
+                outline: none;
+            }
         }
 
-        a:hover {
-            color: var(--color-text-primary);
-        }
-
-        @media (width < 600px) {
-            flex-direction: column;
+        @media (max-width: 600px) {
             align-items: flex-start;
-            gap: 6px;
+            flex-direction: column;
+
+            .footerLinks {
+                justify-content: flex-start;
+            }
         }
     `,
 };

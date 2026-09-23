@@ -1,14 +1,10 @@
 // src/components/header/index.jsx
 import React, { useEffect, useMemo, useState } from "react";
 import { Styled } from "./styled";
-import transparentLogo from "/images/transparentLogo.png";
+import logo from "/logo.png";
 import {
     FiMoon,
     FiSun,
-    FiGitBranch,
-    FiCheckCircle,
-    FiTool,
-    FiCpu,
 } from "react-icons/fi";
 
 const THEME_LS_KEY = "engineering-dsa-theme";
@@ -57,8 +53,8 @@ const Header = () => {
                         <div className="logoWrapper">
                             {!logoLoaded && <div className="logoSkeleton" />}
                             <img
-                                src={transparentLogo}
-                                alt="engineering-dsa-foundations"
+                                src={logo}
+                                alt="Engineering DSA Foundations logo"
                                 onLoad={() => setLogoLoaded(true)}
                                 style={{ opacity: logoLoaded ? 1 : 0 }}
                             />
