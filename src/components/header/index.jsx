@@ -1,5 +1,5 @@
 // src/components/header/index.jsx
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Styled } from "./styled";
 import logo from "/logo.png";
 import {
@@ -11,22 +11,14 @@ const THEME_LS_KEY = "engineering-dsa-theme";
 
 const Header = () => {
     const [logoLoaded, setLogoLoaded] = useState(false);
-    const [theme, setTheme] = useState("dark");
-
-    // Init theme from localStorage or default
-    useEffect(() => {
-        const storedTheme = localStorage.getItem(THEME_LS_KEY);
-        const initialTheme = storedTheme || "dark";
-        setTheme(initialTheme);
-
-        if (initialTheme === "light") {
-            document.documentElement.setAttribute("data-theme", "light");
-        } else {
-            document.documentElement.removeAttribute("data-theme");
+    const [theme, setTheme] = useState(() => {
+        try {
+            return localStorage.getItem(THEME_LS_KEY) === "light" ? "light" : "dark";
+        } catch {
+            return "dark";
         }
-    }, []);
+    });
 
-    // Apply theme + persist
     useEffect(() => {
         if (theme === "light") {
             document.documentElement.setAttribute("data-theme", "light");
@@ -34,12 +26,14 @@ const Header = () => {
             document.documentElement.removeAttribute("data-theme");
         }
 
-        localStorage.setItem(THEME_LS_KEY, theme);
+        try {
+            localStorage.setItem(THEME_LS_KEY, theme);
+        } catch {
+            // Keep the selected theme usable for this session when storage is unavailable.
+        }
     }, [theme]);
 
-    const nextTheme = useMemo(() => {
-        return theme === "light" ? "dark" : "light";
-    }, [theme]);
+    const nextTheme = theme === "light" ? "dark" : "light";
 
     const handleToggle = () => {
         setTheme(nextTheme);

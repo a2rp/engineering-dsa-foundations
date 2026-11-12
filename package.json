@@ -7,7 +7,7 @@
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
-        "predeploy": "npm run build && copy dist\\index.html dist\\404.html",
+        "predeploy": "npm run build && node --input-type=module -e \"import { copyFileSync } from 'node:fs'; copyFileSync('dist/index.html', 'dist/404.html')\"",
         "deploy": "npx gh-pages -d dist -b gh-pages"
     },
     "dependencies": {
